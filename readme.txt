@@ -9,4 +9,4 @@ Creating a new branch is quick AND simple.
 Creating a new branch is quick and simple.
 
 --no-ff git merge test
-
+issue101 resolve
