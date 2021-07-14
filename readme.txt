@@ -9,6 +9,12 @@ Creating a new branch is quick AND simple.
 Creating a new branch is quick and simple.
 
 --no-ff git merge test
+<<<<<<< HEAD
 
 stash test
 stash test2
+=======
+issue101 resolve
+>>>>>>> issue-101
+
+resolve
