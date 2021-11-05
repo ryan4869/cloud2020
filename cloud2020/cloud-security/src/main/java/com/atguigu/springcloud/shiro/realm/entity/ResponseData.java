@@ -1,4 +1,4 @@
-package com.fairyland.core.security.base;
+package com.atguigu.springcloud.shiro.realm.entity;
 
 import lombok.Data;
 
@@ -79,5 +79,6 @@ public class ResponseData<T> {
 		}
 		
 	}
-	
+
+
 }
