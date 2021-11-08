@@ -1,4 +1,4 @@
-package com.atguigu.springcloud;
+package com.atguigu.springcloud.test;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;

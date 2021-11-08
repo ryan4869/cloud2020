@@ -35,4 +35,27 @@ public class RabbitMQServiceImpl implements RabbitMQService {
             return "error";
         }
     }
+
+    //发布消息
+    @Override
+    public String sendMsgByFanoutExchange(String msg) {
+        Map<String, Object> message = getMessage(msg);
+        try {
+            rabbitTemplate.convertAndSend(RabbitMQConfig.FANOUT_EXCHANGE_DEMO_NAME, "", message);
+            return "ok";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error";
+        }
+    }
+    //组装消息体
+    private Map<String, Object> getMessage(String msg) {
+        String msgId = UUID.randomUUID().toString().replace("-", "").substring(0, 32);
+        String sendTime = sdf.format(new Date());
+        Map<String, Object> map = new HashMap<>();
+        map.put("msgId", msgId);
+        map.put("sendTime", sendTime);
+        map.put("msg", msg);
+        return map;
+    }
 }
