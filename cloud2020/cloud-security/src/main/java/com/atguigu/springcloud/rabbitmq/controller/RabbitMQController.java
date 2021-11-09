@@ -2,12 +2,15 @@ package com.atguigu.springcloud.rabbitmq.controller;
 
 
 import com.atguigu.springcloud.rabbitmq.service.RabbitMQService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/mall/rabbitmq")
@@ -26,5 +29,13 @@ public class RabbitMQController {
     @PostMapping("/publish")
     public String publish(@RequestParam(name = "msg") String msg) throws Exception {
         return rabbitMQService.sendMsgByFanoutExchange(msg);
+    }
+
+    @PostMapping("/headersSend")
+    @SuppressWarnings("unchecked")
+    public String headersSend(@RequestParam(name = "msg")String msg, @RequestParam(name = "json")String json) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String,Object> map = mapper.readValue(json, Map.class);
+        return  rabbitMQService.sendMsgByHeadersExchange(msg,map);
     }
 }
